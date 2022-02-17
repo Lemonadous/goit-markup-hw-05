@@ -19,6 +19,7 @@
   --accent-color: #2196f3;
   --icon-color-first: #afb1b8;
   --icon-color-second: #ffffff;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -126,18 +127,22 @@ img {
   align-items: center;
 }
 
-.navigation-link {
-  color: var(--body-color);
-}
-
 .navigation-list {
   display: flex;
   align-items: center;
   margin-right: auto;
 }
 
-.navigation-list .link.current {
-  color: var(--accent-color);
+.navigation-item {
+  position: relative;
+}
+
+.navigation-link {
+  display: inline-block;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  color: var(--body-color);
+  transition: color 250ms var(--timing-function);
 }
 
 .navigation-link:focus,
@@ -145,11 +150,13 @@ img {
   color: var(--accent-color);
 }
 
-.navigation-item {
-  position: relative;
+.navigation-link:focus::after,
+.navigation-link:hover::after {
+  color: var(--accent-color);
+  opacity: 1;
 }
 
-.navigation-list .current:after {
+.navigation-link:after {
   content: '';
   display: block;
   position: absolute;
@@ -157,13 +164,25 @@ img {
   width: 100%;
   border-radius: 2px;
   bottom: 0;
+  opacity: 0;
   background-color: var(--accent-color);
+  transition: opacity 250ms var(--timing-function);
 }
 
-.navigation-link {
-  display: inline-block;
-  padding-top: 32px;
-  padding-bottom: 32px;
+.navigation-list .link.current {
+  color: var(--accent-color);
+}
+
+.navigation-link.current:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  bottom: 0;
+  opacity: 1;
+  background-color: var(--accent-color);
 }
 
 .header-list-contacts {
@@ -192,6 +211,7 @@ img {
   padding-bottom: 32px;
   color: #757575;
   border: 0;
+  transition: fill 250ms var(--timing-function), color 250ms var(--timing-function);
 }
 
 .contacts:focus,
@@ -249,6 +269,7 @@ img {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border: 0;
   border-radius: 4px;
+  transition: color 250ms var(--timing-function), background-color 250ms var(--timing-function);
 }
 .hero-btn-order:focus,
 .hero-btn-order:hover {
@@ -403,6 +424,7 @@ img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  transition: background-color 250ms var(--timing-function);
 }
 
 .social-link:hover,
@@ -420,6 +442,7 @@ img {
   width: 20px;
   height: 20px;
   fill: var(--icon-color-first);
+  transition: fill 250ms var(--timing-function);
 }
 
 /* -----clients----- */
@@ -450,6 +473,7 @@ img {
   height: 100%;
   border: 1px solid var(--icon-color-first);
   border-radius: 4px;
+  transition: border-color 250ms var(--timing-function);
 }
 
 .clients-link:hover,
@@ -466,6 +490,7 @@ img {
   width: 106px;
   height: 60px;
   fill: var(--icon-color-first);
+  transition: fill 250ms var(--timing-function);
 }
 
 /* -----------------------------main portfolio---------------------------------*/
@@ -494,6 +519,8 @@ img {
   border: 0;
   color: var(--main-btn-text-color-first);
   background-color: var(--main-btn-background-color-first);
+  transition: color 250ms var(--timing-function), background-color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 
 .categories-button:hover,
@@ -523,24 +550,6 @@ img {
   justify-content: center;
 }
 
-.examples-item:hover,
-.examples-item:focus {
-  background: #ffffff;
-  border: 1px solid #eeeeee;
-  box-sizing: border-box;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-}
-
-.examples-item:hover .examples-box::before {
-  opacity: 0.9;
-  transform: translateY(0);
-}
-
-.examples-item:hover .examples-overlay {
-  transform: translateY(0);
-}
-
 .examples-item:nth-child(3n + 3) {
   margin-right: 0;
 }
@@ -557,6 +566,27 @@ img {
 
 .examples-link {
   display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #eeeeee;
+  background: #ffffff;
+  transition: box-shadow 250ms var(--timing-function);
+}
+
+.examples-link:hover,
+.examples-link:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.examples-link:hover .examples-box::before,
+.examples-link:focus .examples-box::before {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+.examples-link:hover .examples-overlay,
+.examples-link:focus .examples-overlay {
+  transform: translateY(0);
 }
 
 .examples-box {
@@ -571,7 +601,7 @@ img {
   height: 100%;
   background-color: var(--accent-color);
   transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms var(--timing-function);
 }
 
 .examples-overlay {
@@ -626,19 +656,6 @@ img {
   align-items: baseline;
 }
 
-.footer-link-map:hover,
-.footer-link-map:focus {
-  color: var(--accent-color);
-}
-.footer-link-mail:hover,
-.footer-link-mail:focus {
-  color: var(--accent-color);
-}
-.footer-link-tel:hover,
-.footer-link-tel:focus {
-  color: var(--accent-color);
-}
-
 .footer-logo {
   font-family: 'Raleway', sans-serif;
   font-weight: 700;
@@ -662,6 +679,12 @@ img {
   line-height: calc(24 / 14);
   letter-spacing: 0.03em;
   color: #ffffff;
+  transition: color 250ms var(--timing-function);
+}
+
+.footer-link-map:hover,
+.footer-link-map:focus {
+  color: var(--accent-color);
 }
 
 .footer-link-mail {
@@ -670,6 +693,12 @@ img {
   line-height: calc(24 / 14);
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.6);
+  transition: color 250ms var(--timing-function);
+}
+
+.footer-link-mail:hover,
+.footer-link-mail:focus {
+  color: var(--accent-color);
 }
 
 .footer-link-tel {
@@ -678,6 +707,12 @@ img {
   line-height: calc(24 / 14);
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.6);
+  transition: color 250ms var(--timing-function);
+}
+
+.footer-link-tel:hover,
+.footer-link-tel:focus {
+  color: var(--accent-color);
 }
 
 .footer-box-join {
@@ -713,8 +748,7 @@ img {
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.2);
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 250ms var(--timing-function), visibility 250ms var(--timing-function);
 }
 
 .backdrop.is-hidden {
