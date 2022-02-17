@@ -65,7 +65,7 @@
         <section class="hero-section">
             <div class="container">
                 <h1 class="hero-title">Эффективные решения для вашего бизнеса</h1>
-                <button class="hero-btn-order" type="button">Заказать услугу</button>
+                <button class="hero-btn-order" type="button" data-modal-open>Заказать услугу</button>
             </div>
         </section>
         <section class="index-features section">
@@ -125,17 +125,21 @@
                 <ul class="index-offers-list list">
                     <li class="index-offers-item item">
                         <div class="offers-wrapper">
-                            <img class="index-offers-img" src="./images/img.jpg" 
-                                alt="печатает на клавиатуре" width="370" height="294">
+                            <img class="index-offers-img" src="./images/img.jpg" alt="печатает на клавиатуре" width="370" height="294">
                             <p class="offers-title">десктопные приложения</p>
-                        </div>                       
-                    </li>
+                        </div></li>
                     <li class="index-offers-item item">
-                        <img class="index-offers-img" src="./images/img2.jpg" alt="подключает телефон к компьютеру" width="370"
+                        <div class="offers-wrapper">
+                            <img class="index-offers-img" src="./images/img2.jpg" alt="подключает телефон к компьютеру" width="370"
                             height="294">
+                            <p class="offers-title">мобильные приложения</p>
+                        </div>
                     </li>
                     <li class="index-offers-item item">
-                        <img class="index-offers-img" src="./images/img3.jpg" alt="рисует на планшете" width="370" height="294">
+                        <div class="offers-wrapper">
+                            <img class="index-offers-img" src="./images/img3.jpg" alt="рисует на планшете" width="370" height="294">
+                            <p class="offers-title">дизайнерские решения</p>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -406,5 +410,15 @@
             </div>
         </div>
     </footer>
+    <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+            <button type="button" class="modal-close-btn" data-modal-close>
+                <svg class="modal-close-icon">
+                    <use href="./images/icons/symbol-defs.svg#icon-modal-close-btn"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script src="./js/modal.js"></script>
 </body>
 </html>
