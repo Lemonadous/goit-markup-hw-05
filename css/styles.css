@@ -434,7 +434,7 @@ img {
 
 .social-link:hover .social-icon,
 .social-link:focus .social-icon {
-  background-color: var(--accent-color);
+  /* background-color: var(--accent-color); */
   fill: var(--icon-color-second);
 }
 
@@ -442,7 +442,7 @@ img {
   width: 20px;
   height: 20px;
   fill: var(--icon-color-first);
-  transition: fill 250ms var(--timing-function);
+  transition: fill 250ms var(--timing-function), background-color 250ms var(--timing-function);
 }
 
 /* -----clients----- */
